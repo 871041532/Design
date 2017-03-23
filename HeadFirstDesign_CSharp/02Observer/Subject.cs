@@ -19,6 +19,7 @@ namespace _02Observer
         private double temperature;//温度
         private double humidity;//湿度
         private double pressure;//压力
+        private bool change;//是否通知观察者
 
         //手动设置测量数据
         public void setMeasurements(double temperature,double humidity,double pressure)
@@ -32,7 +33,10 @@ namespace _02Observer
         //改变时调用(外部调用)
         public void measurementsChanged()
         {
-            notifyObservers();
+            if (change)
+            {
+                notifyObservers();
+            }           
         }
         public void notifyObservers()
         {
@@ -40,6 +44,16 @@ namespace _02Observer
             {
                 item.update(getTemperature(), getHumidity(), getPressure());
             }
+        }
+        //改变时是否通知
+        public bool isChanged()
+        {
+            return change;
+        }
+        //设置通知
+        public void setChanged(bool isChange)
+        {
+            change = isChange;
         }
 
         public void registerObserver(Observer o)
