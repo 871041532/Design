@@ -8,8 +8,8 @@ namespace _03Decorator
     public abstract class Beverage
     {
         protected string description="Unkown Beverage";
-        public void setDescription(string description) { this.description = description; }
-        public string getDescription() { return description; }
+        public virtual void setDescription(string description) { this.description = description; }
+        public virtual string getDescription() { return description; }
         public abstract double cost();
     }
     //四种
@@ -39,17 +39,17 @@ namespace _03Decorator
     }
     class Decaf : Beverage
     {
-        public Decaf() { description = "Decaf coffee"; }
+        public Decaf() { description = "Decaf coffee";}
         public override double cost()
         {
             return 3.45;
         }
     }
-    //调味
+
+    //调味抽象类
     public abstract class CondimentDecorator:Beverage
     {
         public Beverage bevarage;
-        public abstract new string getDescription();
     }
     //继承
     class Milk : CondimentDecorator
@@ -65,43 +65,55 @@ namespace _03Decorator
 
         public override string getDescription()
         {
+            return bevarage.getDescription() + ",Milk";
+        }
+    }
+    class Mocha : CondimentDecorator//摩卡
+    {
+        public Mocha(Beverage bevarage)
+        {
+            this.bevarage = bevarage;
+        }
+        public override double cost()
+        {
+            return 0.30 + bevarage.cost();
+        }
+
+        public override string getDescription()
+        {
             return bevarage.getDescription() + ",Mocha";
         }
     }
-    class Mocha : CondimentDecorator
+    class Soy : CondimentDecorator//大豆
     {
+        public Soy(Beverage bevarage)
+        {
+            this.bevarage = bevarage;
+        }
         public override double cost()
         {
-            throw new NotImplementedException();
+            return 0.40 + bevarage.cost();
         }
 
         public override string getDescription()
         {
-            throw new NotImplementedException();
+            return bevarage.getDescription() + ",Soy";
         }
     }
-    class Soy : CondimentDecorator
+    class Whlp : CondimentDecorator//奶泡
     {
+        public Whlp(Beverage bevarage)
+        {
+            this.bevarage = bevarage;
+        }
         public override double cost()
         {
-            throw new NotImplementedException();
+            return 0.50 + bevarage.cost();
         }
 
         public override string getDescription()
         {
-            throw new NotImplementedException();
-        }
-    }
-    class Whlp : CondimentDecorator
-    {
-        public override double cost()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string getDescription()
-        {
-            throw new NotImplementedException();
+            return bevarage.getDescription() + ",Whlp";
         }
     }
 }

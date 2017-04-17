@@ -15,6 +15,16 @@ namespace _03Decorator
     {
         static void Main(string[] args)
         {
+            Beverage beverage = new Espresso();
+            Mocha mB = new Mocha(beverage);
+            Whlp wB = new Whlp(mB);
+            Console.WriteLine(wB.getDescription());
+            Console.WriteLine(wB.cost());
+            Console.ReadLine();
         }
     }
 }
+/*缺点：1.生成大量小类不容易理解 （Java I/O类）
+ * 2.有些代码依赖特定类型，如果导入装饰者会导致异常
+ * 3.使用时大量创建装饰者实例化组件，数量巨大。
+ */
