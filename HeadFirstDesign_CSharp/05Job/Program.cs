@@ -13,7 +13,102 @@ namespace _05Job
     {
         static void Main(string[] args)
         {
+            //AnimalAction.JobTest();
+            //AnimalAction.SyncMgrTest();
+            //AnimalAction.AsyncMgrTest();
+            AnimalAction.BlendMgrTest();
+            Console.ReadLine();
+        }
+    }
+    public class AnimalAction
+    {
+        public static void BlendMgrTest()
+        {
+            AsyncJobManager mgr01 = new AsyncJobManager();
+            SyncJobManager mgr02 = new SyncJobManager();
+            mgr02.addJob(new DogDo());
+            mgr02.addJob(new CatDo());
 
+            mgr01.addJob(new DogDo());
+            mgr01.addJob(mgr02);
+            mgr01.addJob(new CatDo());
+
+            mgr01.run((CallBackPara para)=> {//成功
+                Console.WriteLine("猫狗之事已完毕！");
+            }, (CallBackPara para) => {//失败
+                Console.WriteLine("猫狗之事情有错！");
+            }, (CallBackPara para) => {//进度
+                Console.WriteLine("猫狗之事进度： " + para.m_progress);
+            });
+        }
+
+        public static void AsyncMgrTest()
+        {
+            AsyncJobManager mgr = new AsyncJobManager();
+            mgr.addJob(new DogDo());
+            mgr.addJob(new CatDo());
+            mgr.run((CallBackPara para) => {
+                Console.WriteLine("猫狗之事已完毕！");
+            }, (CallBackPara para) => {
+                Console.WriteLine("猫狗之事情有错！");
+            }, (CallBackPara para) => {
+                Console.WriteLine("猫狗之事进度： " + para.m_progress);
+            });
+        }
+
+        public static void SyncMgrTest()
+        {
+            SyncJobManager mgr = new SyncJobManager();
+            mgr.addJob(new DogDo());
+            mgr.addJob(new CatDo());
+            mgr.run((CallBackPara para)=> {
+                Console.WriteLine("猫狗之事已完毕！");
+            }, (CallBackPara para) => {
+                Console.WriteLine("猫狗之事情有错！");
+            }, (CallBackPara para) => {
+                Console.WriteLine("猫狗之事进度： "+para.m_progress);
+            });
+        }
+        public static void JobTest()
+        {
+            DogDo dogDo = new DogDo();
+            dogDo.run((CallBackPara para)=> {//成功回调
+                Console.WriteLine(para.m_resultData as string);
+            }, (CallBackPara para) => {//错误回调
+                Console.WriteLine(para.m_errorData as string);
+            }, (CallBackPara para) => {//进度回调
+                Console.WriteLine("狗进食进度： "+para.m_progress);
+            });
+        }
+    }
+    public class DogDo:JobBase
+    {
+        protected override void onRun()
+        {
+            Console.WriteLine("狗开吃:");
+            onProgress(10);
+            onProgress(50);
+            onSuccess("狗进食成功！");
+            //onError("狗不吃东西！");
+        }
+        protected override void onDispose()
+        {
+            Console.WriteLine("狗拉出去溜...");
+        }
+    }
+   public class CatDo:JobBase
+    {
+        protected override void onRun()
+        {
+            Console.WriteLine("猫开拉:");
+            onProgress(10);
+            onProgress(50);
+            onSuccess("猫拉屎成功！");
+            //onError("猫拉不出屎！");
+        }
+        protected override void onDispose()
+        {
+            Console.WriteLine("猫拉出去溜...");
         }
     }
 }
