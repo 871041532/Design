@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,22 +16,59 @@ namespace _04Factory
     }
     //比萨基类
     public class Pizza {
-        public void prepare() { }
-        public void bake() { }
-        public void cut() { }
-        public void box() { }
+        protected string name;
+        protected string dough;//面团
+        protected string sauce;//酱料
+        protected ArrayList toppings = new ArrayList();//配料
+
+        public virtual void prepare() {
+            Console.WriteLine("Preparing:"+name);
+            Console.WriteLine("Tossing dough:"+dough);
+            Console.WriteLine("Adding sauce..."+sauce);
+            StringBuilder temp = new StringBuilder();
+            foreach (var item in toppings)
+            {
+                temp.Append((" " + item) as string);
+            }
+            Console.WriteLine("Adding toppings:"+ temp);
+        }
+        public virtual void bake() {
+            Console.WriteLine("Bake for 25 miniutes at 350.");
+        }
+        public virtual void cut() {
+            Console.WriteLine("Cutting the pizza into diagonal slices");//对角线切片
+        }
+        public virtual void box() {//包装
+            Console.WriteLine("Place pizza in official PizzaStore box" + "\n");
+        }
+        public virtual string getName()
+        {
+            return name;
+        }
     }
     //纽约风格比萨
     public class NYStyleCheesePizza:Pizza{
         public NYStyleCheesePizza() {
-            Console.WriteLine("生产了一个NYStyle风格披萨");
+            name=("NYStyle风格披萨");
+            dough = "薄面";
+            sauce = "大蒜酱";
+            toppings.Add("碎乳酪作料");
         }
     }
-    public class NYStyleVeggiePizza:Pizza{}
+    public class NYStyleVeggiePizza:Pizza{
+    }
     public class NYStyleClamPizza:Pizza{}
     public class NYStylePepperoni:Pizza{}
     //芝加哥风格比萨
-    public class ChicagoCheesePizza : Pizza { }
+    public class ChicagoCheesePizza : Pizza {
+        public ChicagoCheesePizza()
+        {
+            name = ("Chicago风格披萨");
+            dough = "厚面";
+            sauce = "番茄酱";
+            toppings.Add("肉干");
+        }
+    }
     public class ChicagoVegiePizza : Pizza { }
     public class ChicagoClamPizza : Pizza { }
     public class ChicagoPepperoinPizza : Pizza { }
