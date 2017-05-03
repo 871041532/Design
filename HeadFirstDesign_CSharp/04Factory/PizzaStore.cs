@@ -15,23 +15,14 @@ namespace _04Factory
         pepperoni,//意大利辣味香肠
     }
     //比萨基类
-    public class Pizza {
+    public abstract class Pizza {
         protected string name;
-        protected string dough;//面团
-        protected string sauce;//酱料
+        protected Dough dough;//面团基类
+        protected Sauce sauce;//酱料基类
+        protected Cheese cheese;//起司奶酪基类
         protected ArrayList toppings = new ArrayList();//配料
 
-        public virtual void prepare() {
-            Console.WriteLine("Preparing:"+name);
-            Console.WriteLine("Tossing dough:"+dough);
-            Console.WriteLine("Adding sauce..."+sauce);
-            StringBuilder temp = new StringBuilder();
-            foreach (var item in toppings)
-            {
-                temp.Append((" " + item) as string);
-            }
-            Console.WriteLine("Adding toppings:"+ temp);
-        }
+        public abstract void prepare();//来自原料工厂的抽象类
         public virtual void bake() {
             Console.WriteLine("Bake for 25 miniutes at 350.");
         }
@@ -41,37 +32,36 @@ namespace _04Factory
         public virtual void box() {//包装
             Console.WriteLine("Place pizza in official PizzaStore box" + "\n");
         }
-        public virtual string getName()
+        public void setName(string _name)
+        {
+            name = _name;
+        }
+        public string getName()
         {
             return name;
         }
-    }
-    //纽约风格比萨
-    public class NYStyleCheesePizza:Pizza{
-        public NYStyleCheesePizza() {
-            name=("NYStyle风格披萨");
-            dough = "薄面";
-            sauce = "大蒜酱";
-            toppings.Add("碎乳酪作料");
-        }
-    }
-    public class NYStyleVeggiePizza:Pizza{
-    }
-    public class NYStyleClamPizza:Pizza{}
-    public class NYStylePepperoni:Pizza{}
-    //芝加哥风格比萨
-    public class ChicagoCheesePizza : Pizza {
-        public ChicagoCheesePizza()
+        public String toString()
         {
-            name = ("Chicago风格披萨");
-            dough = "厚面";
-            sauce = "番茄酱";
-            toppings.Add("肉干");
+            return "这是一个" + name+"风格的披萨。";
         }
     }
-    public class ChicagoVegiePizza : Pizza { }
-    public class ChicagoClamPizza : Pizza { }
-    public class ChicagoPepperoinPizza : Pizza { }
+
+    //起司披萨
+    public class CheesePizza : Pizza
+    {
+        PizzaIngredientFactory ingredientFactory;
+        public CheesePizza(PizzaIngredientFactory _ingredientFactory)
+        {
+            ingredientFactory = _ingredientFactory;
+        }
+        public override void prepare()
+        {
+            Console.WriteLine("Preparing "+name);
+            dough = ingredientFactory.createDough();
+            sauce = ingredientFactory.createSauce();
+            cheese = ingredientFactory.createCheese();
+        }
+    }
 
     //抽象工厂
     public abstract class PizzaStore
@@ -94,23 +84,26 @@ namespace _04Factory
     {
         protected override Pizza createPizza(PizzaType item)
         {
+            Pizza pizza = null;
+            PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
             if (item== PizzaType.cheese)
             {
-                return new NYStyleCheesePizza();
+                pizza = new CheesePizza(ingredientFactory);
+                pizza.setName("New York Style Cheese Pizza");
             }
             else if(item== PizzaType.veggie)
             {
-                return new NYStyleVeggiePizza();
+                return null;
             }
             else if (item== PizzaType.clam)
             {
-                return new NYStyleClamPizza();
+                return null;
             }
             else if (item== PizzaType.pepperoni)
             {
-                return new NYStylePepperoni();
+                return null;
             }
-            return null;
+            return pizza;
         }
     }
 
@@ -119,23 +112,26 @@ namespace _04Factory
     {
         protected override Pizza createPizza(PizzaType item)
         {
+            Pizza pizza = null;
+            PizzaIngredientFactory ingredientFactory = new CHPizzaIngredientFactory();
             if (item== PizzaType.cheese)
             {
-                return new ChicagoCheesePizza();
+                pizza = new CheesePizza(ingredientFactory);
+                pizza.setName("Chicago Style Cheese Pizza");
             }
             else if (item== PizzaType.veggie)
             {
-                return new ChicagoVegiePizza();
+                return null;
             }
             else if (item== PizzaType.clam)
             {
-                return new ChicagoClamPizza();
+                return null;
             }
             else if (item== PizzaType.pepperoni)
             {
-                return new ChicagoPepperoinPizza();
+                return null;
             }
-            return null;
+            return pizza;
         }
     }
 }
