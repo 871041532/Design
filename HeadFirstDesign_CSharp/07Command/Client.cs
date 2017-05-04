@@ -13,6 +13,7 @@ namespace _07Command
     {
         Command[] onCommands;
         Command[] offCommands;
+        Command undoCommand;
         public RemoteControl()
         {
             onCommands = new Command[7];
@@ -23,6 +24,7 @@ namespace _07Command
                 onCommands[i] = noCommand;
                 offCommands[i] = noCommand;
             }
+            undoCommand = new NoCommand();
         }
         //设置插槽
         public void setCommand(int slot,Command onCommand,Command offCommand)
@@ -34,13 +36,20 @@ namespace _07Command
         public void onButtonWasPushed(int slot)
         {
             onCommands[slot].execute();
+            undoCommand = onCommands[slot];
         }
         //按下关闭按钮
         public void offButtonWasPushed(int slot)
         {
             offCommands[slot].execute();
+            undoCommand = offCommands[slot];
         }
-        
+        //按下撤销按钮
+        public void undoButtonWasPushed()
+        {
+            undoCommand.undo();
+        }
+
         public string toString()
         {
             StringBuilder stringBuff = new StringBuilder();
