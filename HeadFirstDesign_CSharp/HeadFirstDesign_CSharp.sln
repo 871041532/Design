@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06Single", "06Single\06Sing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07Command", "07Command\07Command.csproj", "{9D0824B2-357D-4456-BF8C-958077E73D98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adapter", "Adapter\Adapter.csproj", "{B0881216-CBB1-4CCC-B9BB-37D1DAB01C15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08Adapter", "Adapter\08Adapter.csproj", "{B0881216-CBB1-4CCC-B9BB-37D1DAB01C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _07Command
 {
-    //命令接口
+    //命令接口，持有执行命令的receiver对象，当excute()被调用时执行内部对象的特定方法。
     public interface Command
     {
         void execute();//命令执行

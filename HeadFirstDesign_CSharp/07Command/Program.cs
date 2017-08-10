@@ -25,16 +25,24 @@ namespace _07Command
              * 当执行命令的时候，将历史记录存储在磁盘中，一旦司机就将命令对象重新加载，并成批地依次调用这些对象的execute()方法
              * 对于更高级的应用，技巧被扩展应用到事务处理中，也就是说一整群操作必须全部完成，或者没有进行任何的操作。
              */
-             //Client
+
+            /*关键字
+             * receiver：接收者，其对象引用被放于command内部，当excute被执行时调用receiver特定方法。
+             * command：命令，持有执行命令的receiver对象，当excute()被调用时执行内部对象的特定方法。
+             * Invoker：调用者，调用者持有命令对象并在某个时间点调用excute()方法。
+             * client：客户，负责创建一个ConcreteCommand,并设置接收者,在此程序中客户是Main函数。
+             */
+
+            //Invoker调用者
             RemoteControl remoteControl = new RemoteControl();
 
-            //Receiver
+            //receiver接收者
             Light light = new Light();
             CeilingFanHigh ceilingFanHigh = new CeilingFanHigh();
             GarageDoor garageDoor = new GarageDoor();
             Stereo stereo = new Stereo();
 
-            //Command
+            //Command命令
             LightOnCommand lightOnCommand = new LightOnCommand(light);
             LightOffCommand lightOffCommand = new LightOffCommand(light);
             CeilingFanHighOnCommand ceilingFanHignOnCommand = new CeilingFanHighOnCommand(ceilingFanHigh);
@@ -44,7 +52,7 @@ namespace _07Command
             StereOnWithCDCommand stereOnWithCDCommand = new StereOnWithCDCommand(stereo);
             StereOffWithCDCommand stereOffWithCDCommand = new StereOffWithCDCommand(stereo);
 
-            //addCommand
+            //client做的事情
             remoteControl.setCommand(0,lightOnCommand,lightOffCommand);
             remoteControl.setCommand(1,ceilingFanHignOnCommand,ceilingFanHighOffCommand);
             remoteControl.setCommand(2, garaDoorOnCommand, garaDoorOffCommand);
