@@ -15,6 +15,7 @@ namespace _02Observer
     {
         void display();
     }
+
     //条件面板
     class ConcreteConditionsDisplay:Observer, DisplayElement
     {
