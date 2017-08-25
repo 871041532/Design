@@ -6,13 +6,14 @@ using System.Text;
 
 namespace _05Job
 {
-    public class AsyncJobManager : JobBase
+    //Job串行器
+    public class JobSerialManager : JobBase
     {
         public List<JobBase> m_jobs = new List<JobBase>();//所有待执行事务
         public int m_current = 0;//当前在执行事务编号
         public int m_progressCount = 0;//当前进度
         
-        public AsyncJobManager(IEnumerable<JobBase> _jobs = null)
+        public JobSerialManager(IEnumerable<JobBase> _jobs = null)
         {
             if (_jobs != null)
             {

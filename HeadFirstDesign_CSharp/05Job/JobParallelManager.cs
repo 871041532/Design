@@ -5,7 +5,8 @@ using System.Text;
 
 namespace _05Job
 {
-    public class SyncJobManager : JobBase
+    //Job并行器
+    public class JobParallelManager : JobBase
     {
         //所有子事务
         public List<JobBase> m_jobs = new List<JobBase>();
@@ -22,7 +23,7 @@ namespace _05Job
         //存储回调进度参数列表
         public List<CallBackPara> m_items = new List<CallBackPara>();
         //构造
-        public SyncJobManager(IEnumerable<JobBase> jobs = null)
+        public JobParallelManager(IEnumerable<JobBase> jobs = null)
         {
             if (jobs != null)
             {

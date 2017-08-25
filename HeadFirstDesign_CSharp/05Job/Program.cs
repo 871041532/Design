@@ -24,8 +24,8 @@ namespace _05Job
     {
         public static void BlendMgrTest()
         {
-            AsyncJobManager mgr01 = new AsyncJobManager();
-            SyncJobManager mgr02 = new SyncJobManager();
+            JobSerialManager mgr01 = new JobSerialManager();
+            JobParallelManager mgr02 = new JobParallelManager();
             mgr02.addJob(new DogDo());
             mgr02.addJob(new CatDo());
 
@@ -44,7 +44,7 @@ namespace _05Job
 
         public static void AsyncMgrTest()
         {
-            AsyncJobManager mgr = new AsyncJobManager();
+            JobSerialManager mgr = new JobSerialManager();
             mgr.addJob(new DogDo());
             mgr.addJob(new CatDo());
             mgr.run((CallBackPara para) => {
@@ -58,7 +58,7 @@ namespace _05Job
 
         public static void SyncMgrTest()
         {
-            SyncJobManager mgr = new SyncJobManager();
+            JobParallelManager mgr = new JobParallelManager();
             mgr.addJob(new DogDo());
             mgr.addJob(new CatDo());
             mgr.run((CallBackPara para)=> {

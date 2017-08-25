@@ -43,7 +43,14 @@ public class Job
             System.out.println("猫狗之事进度： " + para.m_progress);
         }, 0);
 
+        Thread t1=new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
 
+            }
+        });
 
     }
 
