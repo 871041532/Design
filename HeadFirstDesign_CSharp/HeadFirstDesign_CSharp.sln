@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08Adapter", "Adapter\08Adap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09Facade", "09Exterior\09Facade.csproj", "{FF8BAC6D-C994-4469-B0B2-E955EDF2FB2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10Template", "10Template\10Template.csproj", "{542CECBB-1280-41E8-A588-186BDFC5E4EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{FF8BAC6D-C994-4469-B0B2-E955EDF2FB2A}.Release|x64.Build.0 = Release|Any CPU
 		{FF8BAC6D-C994-4469-B0B2-E955EDF2FB2A}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF8BAC6D-C994-4469-B0B2-E955EDF2FB2A}.Release|x86.Build.0 = Release|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Release|x64.Build.0 = Release|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{542CECBB-1280-41E8-A588-186BDFC5E4EC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
