@@ -50,6 +50,7 @@ namespace _13State
 
             gumballMachine.turnRefill();
             Console.WriteLine(gumballMachine.toString());
+
             Console.ReadLine();
         }
     }
