@@ -6,15 +6,33 @@ using System.Threading.Tasks;
 
 namespace _13State.interfaces
 {
-    public interface State
+    public abstract class State
     {
         //投入25美分
-       void insertQuarter();
+        public virtual void insertQuarter()
+        {
+            Console.WriteLine("此时不能投入硬币...");
+        }
         //回退美分
-        void ejectQuarter();
+        public virtual void ejectQuarter()
+        {
+            Console.WriteLine("此时不能回退美分...");
+        }
         //转动旋钮
-        void turnCrank();
+        public virtual bool turnCrank()
+        {
+            Console.WriteLine("此时不能转动曲柄...");
+            return false;
+        }
         //分配糖果
-        void dispense();
+        public virtual void dispense()
+        {
+            Console.WriteLine("此时不能分配糖果..");
+        }
+        //重填
+        public virtual void turnRefill()
+        {
+            Console.WriteLine("此时不能重新装填...");
+        }
     }
 }

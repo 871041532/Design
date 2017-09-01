@@ -14,24 +14,27 @@ namespace _13State.interfaces
             this.gumballMachine = gumballMachine;
         }
 
-        public void dispense()
+        public override void dispense()
         {
-            throw new NotImplementedException();
-        }
-
-        public void ejectQuarter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void insertQuarter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void turnCrank()
-        {
-            throw new NotImplementedException();
+            Console.WriteLine("恭喜你，获得了双倍糖果...");
+            gumballMachine.releaseBall();
+            if (gumballMachine.getCount() == 0)
+            {
+                gumballMachine.setState(gumballMachine.getSoldOutState());
+            }
+            else
+            {
+                gumballMachine.releaseBall();
+                if (gumballMachine.getCount()>0)
+                {
+                    gumballMachine.setState(gumballMachine.getNoQuarterState());
+                }
+                else
+                {
+                    Console.WriteLine("糖果售完辣...");
+                    gumballMachine.setState(gumballMachine.getSoldOutState());
+                }
+            }
         }
     }
 }

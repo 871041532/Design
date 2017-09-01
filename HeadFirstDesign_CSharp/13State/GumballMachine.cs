@@ -13,6 +13,7 @@ namespace _13State
         State noQuarterState;
         State hasQuarterState;
         State soldState;
+        State winnerState;
 
         State state;
         int count = 0;
@@ -23,6 +24,7 @@ namespace _13State
             noQuarterState = new NoQuarterState(this);
             hasQuarterState = new HasQuarterState(this);
             soldState = new SoldState(this);
+            winnerState = new WinnerState(this);
             state = soldOutState;
             this.count = count;
             if (count>0)
@@ -48,8 +50,11 @@ namespace _13State
         //转动曲柄
         public void turnCrank()
         {
-            state.turnCrank();
-            state.dispense();
+            bool isDispense=state.turnCrank();
+            if (isDispense)
+            {
+                state.dispense();
+            }           
         }
         //转化为String
         public string toString()
@@ -70,6 +75,24 @@ namespace _13State
                 count -= 1;
             }
         }
+        public void turnRefill()
+        {
+            state.turnRefill();
+        }
+        public void refill(int count)
+        {
+            Console.WriteLine("开始重新装填");
+            this.count = count;
+            if (count > 0)
+            {
+                state = noQuarterState;
+            }
+            else
+            {
+                state = soldOutState;
+            }
+        }
+
         public State getSoldOutState()
         {
             return soldOutState;
@@ -85,6 +108,10 @@ namespace _13State
         public State getHasQuarterState()
         {
             return hasQuarterState;
+        }
+        public State getWinnerState()
+        {
+            return winnerState;
         }
         public int getCount()
         {

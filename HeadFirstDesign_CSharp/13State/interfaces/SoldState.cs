@@ -15,7 +15,7 @@ namespace _13State.interfaces
             this.gumballMachine = gumballMachine;
         }
 
-        public void dispense()
+        public override void dispense()
         {
             gumballMachine.releaseBall();
             if (gumballMachine.getCount()>0)
@@ -29,19 +29,5 @@ namespace _13State.interfaces
             }
         }
 
-        public void ejectQuarter()
-        {
-            Console.WriteLine("sorry没有钱可退...");
-        }
-
-        public void insertQuarter()
-        {
-            Console.WriteLine("糖果出货中，不能投入硬币...");
-        }
-
-        public void turnCrank()
-        {
-            Console.WriteLine("扳两次旋钮不会给你多一个糖果...");
-        }
     }
 }
