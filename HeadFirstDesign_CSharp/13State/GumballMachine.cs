@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace _13State
-{
+{ 
     public class GumballMachine
     {
         State soldOutState;

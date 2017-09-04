@@ -10,6 +10,10 @@ namespace _14Proxy
     {
         static void Main(string[] args)
         {
+            GumballMachine machine = new GumballMachine("上海",30);
+            GumballMonitor monitor = new GumballMonitor(machine);
+            monitor.report();
+            Console.ReadLine();
         }
     }
 }
