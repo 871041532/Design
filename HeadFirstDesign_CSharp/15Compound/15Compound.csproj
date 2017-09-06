@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BED96649-B63B-4512-AD7B-D4DA5188A123}</ProjectGuid>
+    <ProjectGuid>{89117D53-0FD9-404B-A1B1-2660516D612B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_14Proxy</RootNamespace>
-    <AssemblyName>14Proxy</AssemblyName>
+    <RootNamespace>_15Compound</RootNamespace>
+    <AssemblyName>15Compound</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,13 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Icon.cs" />
+    <Compile Include="entity\composite\Flock.cs" />
+    <Compile Include="entity\factory\CountingDuckFactory.cs" />
+    <Compile Include="entity\DuckCall.cs" />
+    <Compile Include="entity\factory\DuckFactory.cs" />
+    <Compile Include="entity\DuckSimulator.cs" />
+    <Compile Include="entity\adapter\Goose.cs" />
+    <Compile Include="entity\MallardDuck.cs" />
+    <Compile Include="entity\decorator\QuackCounter.cs" />
+    <Compile Include="entity\observer\Observable.cs" />
+    <Compile Include="entity\observer\Quackologist.cs" />
+    <Compile Include="entity\RedheadDuck.cs" />
+    <Compile Include="entity\RubberDuck.cs" />
+    <Compile Include="interfaces\AbstractDuckFactory.cs" />
+    <Compile Include="interfaces\GooseAdapter.cs" />
+    <Compile Include="interfaces\Quackable.cs" />
+    <Compile Include="interfaces\QuackObservable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
