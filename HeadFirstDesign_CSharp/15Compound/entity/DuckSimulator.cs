@@ -1,4 +1,5 @@
 ﻿using _15Compound.entity.composite;
+using _15Compound.entity.observer;
 using _15Compound.interfaces;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,12 @@ namespace _15Compound.entity
 
             flockOfDucks.add(flockOfMallards);
 
+
+            //------------添加观察者相关内容--------------
+            //观察者与主题：一对多，多对一。此处为一对多关系
+            Quackologist quackologist = new Quackologist();
+            flockOfDucks.registerObserver(quackologist);
+            //------------------------------------------------
             Console.WriteLine("鸭子模拟器...\n");
 
             Console.WriteLine("\nflockOfDucks...");

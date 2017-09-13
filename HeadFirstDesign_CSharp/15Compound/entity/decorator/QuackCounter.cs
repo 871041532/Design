@@ -1,4 +1,5 @@
-﻿using _15Compound.interfaces;
+﻿using _15Compound.entity.observer;
+using _15Compound.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace _15Compound.entity
     {
         Quackable duck;
         static int numberOfQuacks;
-        public void registerObserver(Observer observer) { }
+        public void registerObserver(Observer observer) {
+            this.duck.registerObserver(observer);
+        }
         public void notifyObservers() { }
         public QuackCounter(Quackable duck)
         {

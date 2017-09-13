@@ -12,7 +12,15 @@ namespace _15Compound.entity.composite
     public class Flock : Quackable
     {
         List<Quackable> quackers = new List<Quackable>();
-        public void registerObserver(Observer observer){}
+        public void registerObserver(Observer observer)
+        {
+            IEnumerator iterator = quackers.GetEnumerator();
+            while (iterator.MoveNext())
+            {
+                Quackable quacker = iterator.Current as Quackable;
+                quacker.registerObserver(observer);
+            }
+        }
         public void notifyObservers(){}
 
         public void add(Quackable quacker)

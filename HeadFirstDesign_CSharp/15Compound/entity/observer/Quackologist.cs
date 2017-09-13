@@ -11,7 +11,7 @@ namespace _15Compound.entity.observer
     {
         public void update(QuackObservable duck)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("监视器："+duck+"鸣叫...");
         }
     }
 }
